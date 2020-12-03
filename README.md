@@ -20,6 +20,18 @@ In my day-to-day work, I am often asked to verify whether or not hosts are in DN
 
 There is lots of work to do here. I feel there are several opportunities to write this better. It works well as is, but this is also a tool for learning as well. In addition to that, I would very much love to package this up in a Windows executable so that it can be distributed not only amongst those that may find value in it, but also amongst those I work with who all use Windows.
 
+# Current Screenshots
+
+_Main Window_
+
+![](images/python_AE7qH5zhBT.png)
+
+![](images/python_FA1YOTmvc1.png)
+
+_Output Window_
+
+![](images/python_xFXGFLo12P.png)
+
 # Build and Test
 
 In progress
