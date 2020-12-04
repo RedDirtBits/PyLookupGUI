@@ -107,8 +107,7 @@ sg.theme('DarkGrey9')
 
 # Define the multiple host lookup text field and execution button
 multi_lookup = [
-    [sg.Multiline(size=(50, 10), key='LOOKUP', tooltip=multi_host_tt),
-     sg.Button('Lookup', size=(10, 10))]
+    [sg.Multiline(size=(60, 15), key='LOOKUP', tooltip=multi_host_tt)]
 ]
 
 # Create the window layout
@@ -116,12 +115,13 @@ layout = [
     [sg.Frame('IPs or Hostnames', multi_lookup)],
     [sg.Checkbox('Clear IP/Hostnames After Lookup',
                  size=(25, 1), key='ClearInputs', tooltip=checkbox_tt, default=True)],
-    [sg.Text(' ' * 55)],
-    [sg.Button('Exit')]
+    [sg.Text(' ', size=(45, 2))],
+    [sg.Button('Exit', size=(15, 1)), sg.Text(
+        ' ' * 45), sg.Button('DNS Query', size=(15, 1))]
 ]
 
 # Display the window
-window = sg.Window('Host Lookup Tool', layout)
+window = sg.Window('DNS Query Tool', layout)
 
 # Start the event loop
 while True:
@@ -134,7 +134,7 @@ while True:
         break
 
     # User clicks on 'Lookup' button
-    if event == 'Lookup':
+    if event == 'DNS Query':
 
         # Create a list from the hostnames provided
         hosts = values['LOOKUP'].split()
