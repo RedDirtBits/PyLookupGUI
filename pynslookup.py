@@ -5,10 +5,6 @@ import queue
 import ipaddress
 import PySimpleGUI as sg
 
-# TODO:
-# Need to add logic to handle aliases such as d2.tpt.conocophillips.net
-# Notice the three dots.  Its currently failing validation as an invalid IP address
-
 
 def validate(host):
     """Validates a hostname or IP address
