@@ -2,18 +2,19 @@ import socket
 import re
 import threading
 import queue
+import ipaddress
 import PySimpleGUI as sg
 
+# TODO:
+# Need to add logic to handle aliases such as d2.tpt.conocophillips.net
+# Notice the three dots.  Its currently failing validation as an invalid IP address
 
-def validate(host: str):
+
+def validate(host):
     """Validates a hostname or IP address
 
     Parameters:
         host (str): Hostname or and IP address
-
-    Raises:
-        socket.error: IP address fails vaildation
-        ValueError: Hostname contains invalid characters
 
     Returns:
         str: A hostname or IP address
@@ -21,56 +22,30 @@ def validate(host: str):
 
     host_regex = '[@_!#$%^&*()<>?\/\\|}{~:]'
 
-    # Check for three periods in the IP address.  Otherwise, assume its a hostname
-    if host.count('.') == 3:
+    try:
 
-        try:
+        ipaddress.IPv4Address(host)
+        return socket.gethostbyaddr(host)[0].split('.')[0]
 
-            # The first of two IP address validations
-            socket.inet_pton(socket.AF_INET, host)
+    except socket.gaierror:
 
-        except OSError:
+        return 'Unable to resolve.  Non-existent domain'
+
+    except ipaddress.AddressValueError:
+
+        if not bool(re.search(host_regex, host)):
 
             try:
 
-                # The second IP address validation
-                socket.inet_aton(host)
+                return socket.gethostbyname(host)
 
-            except socket.error:
+            except socket.gaierror:
 
-                # If the validation fails, return a message to the user
-                return 'Invalid IP address'
+                return 'Unable to resolve.  Non-existent domain'
 
         else:
 
-            # If the host passes IP validation, perform a reverse DNS query
-            return socket.gethostbyaddr(host)[0].split('.')[0]
-
-    else:
-
-        try:
-
-            # Check that there are no invalid characters in the hostname
-            if not bool(re.search(host_regex, host)):
-
-                try:
-
-                    # If the hostname validates, perform the DNS query
-                    return socket.gethostbyname(host)
-
-                except socket.gaierror:
-
-                    return 'Unable to resolve.  Non-existent domain'
-
-            else:
-
-                # If the hostname fails validation throw an exception
-                raise ValueError('Hostname contains invalid characters')
-
-        except ValueError as error:
-
-            # Hostname failed validation, let the user know
-            return error
+            return ValueError('Hostname contains invalid characters')
 
 
 def thread_start(host):
