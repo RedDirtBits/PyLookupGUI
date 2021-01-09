@@ -108,7 +108,12 @@ while True:
     if event == 'DNS Query':
 
         # Create a list from the hostnames provided
-        hosts = values['LOOKUP'].split()
+        # Need to call a function here that will clean the list of hosts
+        # no matter if it is space separated, comma separated or line
+        # separated.
+        #hosts = values['LOOKUP'].split()
+        hosts = re.split('\\n|\\t|\\s|, |,', values['LOOKUP'])
+        print(hosts)
 
         # Loop over the hostname list and perform a DNS query for each
         for host in hosts:
