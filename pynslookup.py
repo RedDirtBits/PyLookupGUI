@@ -108,7 +108,9 @@ while True:
     if event == 'DNS Query':
 
         # Create a list from the hostnames provided
-        # Host list can be line, comma or space separated
+        # Host list can be line, comma, tab or space separated
+
+        # NOTE: Need to rework to account for IP addresses
         hosts = re.split('\\n|\\t|\\s|, |,', values['LOOKUP'].strip())
 
         # Loop over the hostname list and perform a DNS query for each
