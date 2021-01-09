@@ -85,7 +85,7 @@ multi_lookup = [
 layout = [
     [sg.Frame('IPs or Hostnames', multi_lookup)],
     [sg.Checkbox('Clear IP/Hostnames After Lookup',
-                 size=(25, 1), key='ClearInputs', tooltip=checkbox_tt, default=True)],
+                 size=(30, 1), key='ClearInputs', tooltip=checkbox_tt, default=True)],
     [sg.Text(' ', size=(45, 2))],
     [sg.Button('Exit', size=(15, 1)), sg.Text(
         ' ' * 45), sg.Button('DNS Query', size=(15, 1))]
@@ -108,12 +108,8 @@ while True:
     if event == 'DNS Query':
 
         # Create a list from the hostnames provided
-        # Need to call a function here that will clean the list of hosts
-        # no matter if it is space separated, comma separated or line
-        # separated.
-        #hosts = values['LOOKUP'].split()
-        hosts = re.split('\\n|\\t|\\s|, |,', values['LOOKUP'])
-        print(hosts)
+        # Host list can be line, comma or space separated
+        hosts = re.split('\\n|\\t|\\s|, |,', values['LOOKUP'].strip())
 
         # Loop over the hostname list and perform a DNS query for each
         for host in hosts:
