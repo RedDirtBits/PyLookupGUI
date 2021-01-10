@@ -76,9 +76,14 @@ checkbox_tt = 'Select to clear text field after host lookup is performed'
 
 sg.theme('DarkGrey9')
 
-# Define the multiple host lookup text field and execution button
+# Define the multiple host lookup text field
 multi_lookup = [
-    [sg.Multiline(size=(60, 15), key='LOOKUP', tooltip=multi_host_tt)]
+    [sg.Multiline(size=(70, 10), key='LOOKUP', tooltip=multi_host_tt)]
+]
+
+# Define the multiple output field
+output_window = [
+    [sg.MLine(key='OUTPUT' + sg.WRITE_ONLY_KEY, size=(70, 10))]
 ]
 
 # Create the window layout
@@ -86,9 +91,11 @@ layout = [
     [sg.Frame('IPs or Hostnames', multi_lookup)],
     [sg.Checkbox('Clear IP/Hostnames After Lookup',
                  size=(30, 1), key='ClearInputs', tooltip=checkbox_tt, default=True)],
+    # [sg.Text(' ', size=(45, 2))],
+    [sg.Frame('Output', output_window)],
     [sg.Text(' ', size=(45, 2))],
     [sg.Button('Exit', size=(15, 1)), sg.Text(
-        ' ' * 45), sg.Button('DNS Query', size=(15, 1))]
+        ' ' * 60), sg.Button('DNS Query', size=(15, 1))],
 ]
 
 # Display the window
@@ -113,10 +120,16 @@ while True:
         # NOTE: Need to rework to account for IP addresses
         hosts = re.split('\\n|\\t|\\s|, |,', values['LOOKUP'].strip())
 
+        # Clear the output window of any previous results
+        window['OUTPUT' + sg.WRITE_ONLY_KEY].update('')
+
         # Loop over the hostname list and perform a DNS query for each
         for host in hosts:
 
-            sg.Print('{}: {}'.format(host, thread_start(host)))
+            window['OUTPUT' +
+                   sg.WRITE_ONLY_KEY].print(host + ':', thread_start(host))
+
+            # sg.Print('{}: {}'.format(host, thread_start(host)))
 
         # By default, clear the input field after a query has been performed
         if values['ClearInputs']:
