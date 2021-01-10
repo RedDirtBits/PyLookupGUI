@@ -1,8 +1,10 @@
-# created by virtualenv automatically
+# Virtual Environment ignores
 /Lib
 /Scripts
 /pyvenv.cfg
-/pynslookup_test.py
 /bin
 /lib
+# VS Code ignores
 *.vscode
+# Misc. ignores
+/pynslookup_test.py
