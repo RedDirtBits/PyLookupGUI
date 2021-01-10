@@ -78,12 +78,12 @@ sg.theme('DarkGrey9')
 
 # Define the multiple host lookup text field
 multi_lookup = [
-    [sg.Multiline(size=(70, 10), key='LOOKUP', tooltip=multi_host_tt)]
+    [sg.Multiline(size=(80, 10), key='LOOKUP', tooltip=multi_host_tt)]
 ]
 
 # Define the multiple output field
 output_window = [
-    [sg.MLine(key='OUTPUT' + sg.WRITE_ONLY_KEY, size=(70, 10))]
+    [sg.MLine(key='OUTPUT' + sg.WRITE_ONLY_KEY, size=(80, 10))]
 ]
 
 # Create the window layout
@@ -95,7 +95,7 @@ layout = [
     [sg.Frame('Output', output_window)],
     [sg.Text(' ', size=(45, 2))],
     [sg.Button('Exit', size=(15, 1)), sg.Text(
-        ' ' * 60), sg.Button('DNS Query', size=(15, 1))],
+        ' ' * 75), sg.Button('DNS Query', size=(15, 1))],
 ]
 
 # Display the window
