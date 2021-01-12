@@ -35,7 +35,7 @@ _Comma Separated Host List_
 
 ![](images/pynslookup_comma_separated.png)
 
-_List Separated Host List_
+_List/Line Separated Host List_
 
 ![](images/pynslookup_list_separated.png)
 
