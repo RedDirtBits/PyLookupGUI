@@ -25,13 +25,23 @@ In my day-to-day work, I am often asked to verify whether or not hosts are in DN
 
 _Main Window_
 
-![](images/python_AE7qH5zhBT.png)
+![](images/pynslookup_main_window.png)
 
-![](images/python_FA1YOTmvc1.png)
+_Space Separated Host List_
 
-_Output Window_
+![](images/pynslookup_space_separated.png)
 
-![](images/python_xFXGFLo12P.png)
+_Comma Separated Host List_
+
+![](images/pynslookup_comma_separated.png)
+
+_List Separated Host List_
+
+![](images/pynslookup_list_separated.png)
+
+_Mixed Delimiters Works_
+
+![](images/pynslookup_mixed_separated.png)
 
 # Windows Executable
 
