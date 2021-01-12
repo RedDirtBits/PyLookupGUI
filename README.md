@@ -19,7 +19,7 @@ In my day-to-day work, I am often asked to verify whether or not hosts are in DN
 # Next Steps
 
 - Improve the source code where possible
-- Create a Windows executable file
+- Create a Windows executable file (Done!)
 
 # Current Screenshots
 
