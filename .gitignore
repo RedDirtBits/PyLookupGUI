@@ -4,6 +4,10 @@
 /pyvenv.cfg
 /bin
 /lib
+/build
+/dist
+/__pycache__
+pynslookup.spec
 # VS Code ignores
 *.vscode
 # Misc. ignores
